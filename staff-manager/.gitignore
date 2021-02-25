@@ -1,0 +1,32 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+ 
+# Mac
+.DS_Store
+ 
+# Maven
+log/
+target/
+
+# Java EE
+build/
+
+# Package Files
+*.ear
+*.zip
+*.tar.gz
+*.jar
+*.nar
+*.war
+*.rar
+
+# Others
+*.log
+.class
