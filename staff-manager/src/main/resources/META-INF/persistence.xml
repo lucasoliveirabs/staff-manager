@@ -8,6 +8,7 @@
 		<jta-data-source>java:/MySqlDS</jta-data-source>
 		
 		<class>com.picompany.model.User</class>
+		<class>com.picompany.model.Phone</class>
 	
 		<properties>
 			<property name="hibernate.dialect"  value="org.hibernate.dialect.MySQL5InnoDBDialect" />
