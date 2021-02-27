@@ -48,15 +48,21 @@ public class LogServlet extends HttpServlet {
 		}
 	}
 
+	private void authorizeLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		User user = dao.authorizeLogin(email, password);
+
+		if (user == null) {
+			response.sendRedirect("login.jsp");
+			// send message: 'You must login as administrator.'
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			response.sendRedirect("users");
+		}
+	}
+
 	private void doLogout(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
 	}
-
-	private void authorizeLogin(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 }
