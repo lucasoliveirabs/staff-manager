@@ -22,10 +22,40 @@ public class LogServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
+			String command = request.getParameter("command");
+			if (command == null || command.isEmpty()) {
+				command = "logout";
+			}
+
+			switch (command) {
+			case "login":
+				authorizeLogin(request, response);
+				break;
+			case "logout":
+				doLogout(request, response);
+				break;
+			default:
+				doLogout(request, response);
+			}
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
+	}
+
+	private void doLogout(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void authorizeLogin(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
