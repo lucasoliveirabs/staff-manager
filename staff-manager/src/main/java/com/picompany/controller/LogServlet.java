@@ -63,6 +63,10 @@ public class LogServlet extends HttpServlet {
 		}
 	}
 
-	private void doLogout(HttpServletRequest request, HttpServletResponse response) {
+	private void doLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("user");
+		session.invalidate();
+		response.sendRedirect("login.jsp");
 	}
 }
