@@ -1,0 +1,25 @@
+CREATE SCHEMA picompany;
+USE picompany;
+
+CREATE TABLE user (
+id BIGINT NOT NULL AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(60) NOT NULL,
+password VARCHAR(30) NOT NULL,
+category TINYINT NOT NULL,
+CONSTRAINT UC_EMAIL UNIQUE (email),
+PRIMARY KEY (id)
+); 
+
+CREATE TABLE phone(
+id BIGINT NOT NULL AUTO_INCREMENT,
+balance INT(2) NOT NULL,
+number VARCHAR(9) NOT NULL,
+type VARCHAR(20) NOT NULL,
+user_id BIGINT NOT NULL,
+FOREIGN KEY (user_id) references user (id),
+CONSTRAINT UC_NUMBER UNIQUE (number),
+PRIMARY KEY (id)
+);
+
+SET @@global.time_zone = '+00:00';
