@@ -12,7 +12,7 @@
 		<br/><br/>
 
 		<input type="submit" value="Login" id="login-button" /> <a
-			href="add-collab.jsp">Create an account</a>
+			href="new-account.jsp">Create an account</a>
 	</form>
 </body>
 </html>
