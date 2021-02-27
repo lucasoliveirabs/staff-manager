@@ -19,11 +19,30 @@ public class UserServlet extends HttpServlet {
 	@EJB
 	private UserDaoLocal dao;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {		
+		String command = request.getParameter("command");
+		
+		switch (command) {
+		case "post":
+			postUser(request, response);
+			break;
+		default:
+			System.out.println("default");
+			//getAllUsers(request, response);
+		}
 	}
+
+	private void postUser(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }
