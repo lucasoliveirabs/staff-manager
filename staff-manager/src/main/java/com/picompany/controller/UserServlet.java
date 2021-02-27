@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.picompany.dao.UserDaoLocal;
+import com.picompany.model.User;
 
 @WebServlet(urlPatterns = "/users/*", name = "users")
 public class UserServlet extends HttpServlet {
@@ -39,10 +40,19 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 
-	private void postUser(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void postUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		
+		User user = new User();
+		user.setName(request.getParameter("name"));
+		user.setEmail(request.getParameter("email"));
+		user.setPassword(request.getParameter("password"));
+		user.setCategory(Boolean.valueOf(request.getParameter("category")));
+		//verifyParameters(HttpServletRequest request, User user);
+		
+		dao.postUser(user);
+		// getAllUsers(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+		rd.forward(request, response);
 	}
-
-	
 }
