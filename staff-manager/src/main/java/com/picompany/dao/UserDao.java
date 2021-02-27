@@ -31,5 +31,8 @@ public class UserDao implements UserDaoLocal {
 		return user;
 	}
 
-
+	@Override
+	public void postUser(User user) {
+		manager.persist(user);		
+	}
 }
