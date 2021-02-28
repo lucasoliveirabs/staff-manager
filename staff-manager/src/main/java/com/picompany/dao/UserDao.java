@@ -53,4 +53,9 @@ public class UserDao implements UserDaoLocal {
 	public User getUserById(Long id) {
 		return manager.find(User.class, id);
 	}
+
+	@Override
+	public void deleteUser(Long id) {
+		manager.remove(getUserById(id));		
+	}
 }

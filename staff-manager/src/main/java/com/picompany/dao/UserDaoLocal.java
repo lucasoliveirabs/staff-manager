@@ -18,4 +18,6 @@ public interface UserDaoLocal {
 	void putUser(User user);
 	
 	User getUserById(Long id);
+	
+	void deleteUser(Long id);
 }
