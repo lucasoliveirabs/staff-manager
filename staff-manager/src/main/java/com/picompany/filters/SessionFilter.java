@@ -1,6 +1,7 @@
 package com.picompany.filters;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,30 +15,35 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter("*.jsp")
 public class SessionFilter implements Filter {
+
 	public SessionFilter() {
+
 	}
 
 	public void destroy() {
+
 	}
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
+
 		String uri = request.getRequestURI();
 		HttpSession session = request.getSession();
+		boolean isNotLoggedIn = (session.getAttribute("user") == null || session == null);
+		boolean isSecurityFile = (!uri.equals("/staff-manager/") && !uri.equals("/staff-manager/login.jsp")
+				&& !uri.equals("/staff-manager/new-account.jsp"));
 
-		boolean isNotLogged = session.getAttribute("user") == null;
-		boolean isSecurityFile = (uri.contains("login") == false || uri.contains("new-account") == false);
-
-		if (isSecurityFile && isNotLogged) {
+		if (isNotLoggedIn && isSecurityFile) {
 			response.sendRedirect("login.jsp");
-			// send message:
-			// 'You must login as an administrator user to access the system.'
+		} else {
+			chain.doFilter(request, response);
 		}
-		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
+
 	}
+
 }
