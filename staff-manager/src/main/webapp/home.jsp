@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Home</title>
 </head>
 <body>
 	<div class="logout">
@@ -13,5 +16,36 @@
 				type="hidden" name="command" value="logout" />
 		</form>
 	</div>
+	<div align="center">
+		<table class="table table-striped table-bordered" style="width: 100%">
+			<tr class="thead-dark">
+				<th scope="col">Name</th>
+				<th scope="col">E-mail</th>
+				<th scope="col">Options</th>
+			</tr>
+			<c:forEach var="user" items="${userList}">
+				<c:url var="userUpdate" value="users">
+					<c:param name="command" value="getbyemail" />
+					<c:param name="userEmail" value="${user.email}" />
+				</c:url>
+
+				<c:url var="userDelete" value="users">
+					<c:param name="command" value="delete" />
+					<c:param name="userEmail" value="${user.email}" />
+				</c:url>
+				<tr>
+					<td scope="row"><c:out value="${user.name}" /></td>
+					<td><c:out value="${user.email}" /></td>
+					<td><a href="${userUpdate}" id="update-button">Update</a> <a
+						href="${userDelete}" id="delete-button">Delete</a></td>
+					<!-- ${listPhones} -->
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
