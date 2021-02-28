@@ -127,8 +127,16 @@ public class UserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));
 		
+		User deletedUser = dao.getUserById(id);
 		dao.deleteUser(id);
 		
+		HttpSession session = request.getSession();
+		User loggedInUser = (User) session.getAttribute("user");
+
+		if (deletedUser.getId() == loggedInUser.getId()) {
+			response.sendRedirect("log");
+		} else {
 			getAllUsers(request, response);	
+		}
 	}
 }
