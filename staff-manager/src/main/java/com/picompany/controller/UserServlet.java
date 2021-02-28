@@ -1,6 +1,7 @@
 package com.picompany.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -22,8 +23,22 @@ public class UserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-		rd.forward(request, response);
+		try {
+			String command = request.getParameter("command");
+			if (command == null || command.isEmpty()) {
+				command = "get";
+			}
+
+			switch (command) {
+			case "get":
+				getAllUsers(request, response);
+				break;
+			default:
+				getAllUsers(request, response);
+			}
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,11 +50,28 @@ public class UserServlet extends HttpServlet {
 			postUser(request, response);
 			break;
 		default:
-			System.out.println("default");
-			//getAllUsers(request, response);
+			getAllUsers(request, response);
 		}
 	}
 
+	private void getAllUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		List<User> list = dao.getAllUsers();
+		
+		System.out.println(list.isEmpty());
+		
+		for (User u : list) {
+			System.out.println(u.getId());
+			System.out.println(u.getName());
+			System.out.println(u.getPassword());
+			System.out.println(u.getCategory());
+		}
+		
+		request.setAttribute("userList", list);
+		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+		rd.forward(request, response);
+	}
+	
 	private void postUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
