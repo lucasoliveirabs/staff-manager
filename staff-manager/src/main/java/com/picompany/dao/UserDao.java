@@ -48,4 +48,9 @@ public class UserDao implements UserDaoLocal {
 	public void putUser(User user) {
 		manager.merge(user);
 	}
+
+	@Override
+	public User getUserById(Long id) {
+		return manager.find(User.class, id);
+	}
 }

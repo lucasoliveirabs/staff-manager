@@ -16,4 +16,6 @@ public interface UserDaoLocal {
 	List<User> getAllUsers();
 	
 	void putUser(User user);
+	
+	User getUserById(Long id);
 }
