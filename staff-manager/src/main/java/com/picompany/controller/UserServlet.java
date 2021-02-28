@@ -33,6 +33,9 @@ public class UserServlet extends HttpServlet {
 			case "get":
 				getAllUsers(request, response);
 				break;
+			case "load":
+				loadUser(request, response);
+				break;
 			default:
 				getAllUsers(request, response);
 			}
@@ -42,59 +45,66 @@ public class UserServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {		
-		String command = request.getParameter("command");
-		
-		switch (command) {
-		case "post":
-			postUser(request, response);
-			break;
-		case "put":
-			putUser(request, response);
-		default:
-			getAllUsers(request, response);
+			throws ServletException, IOException {
+		try {
+			String command = request.getParameter("command");
+			if (command == null || command.isEmpty()) {
+				getAllUsers(request, response);
+			}
+
+			switch (command) {
+			case "post":
+				postUser(request, response);
+				break;
+			case "put":
+				putUser(request, response);
+			default:
+				getAllUsers(request, response);
+			}
+		} catch (Exception e) {
+			throw new ServletException(e);
 		}
 	}
 
-	private void getAllUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	private void getAllUsers(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		List<User> list = dao.getAllUsers();
-		
-		System.out.println(list.isEmpty());
-		
-		for (User u : list) {
-			System.out.println(u.getId());
-			System.out.println(u.getName());
-			System.out.println(u.getPassword());
-			System.out.println(u.getCategory());
-		}
-		
 		request.setAttribute("userList", list);
 		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		rd.forward(request, response);
 	}
-	
+
 	private void postUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		User user = new User();
 		user.setName(request.getParameter("name"));
 		user.setEmail(request.getParameter("email"));
 		user.setPassword(request.getParameter("password"));
 		user.setCategory(Boolean.valueOf(request.getParameter("category")));
-		//verifyParameters(HttpServletRequest request, User user);
-		
+		// verifyParameters(HttpServletRequest request, User user);
+
 		dao.postUser(user);
-		// getAllUsers(request, response);
-		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-		rd.forward(request, response);
-	}
-	
-	private void putUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("id"));
-		User user = dao.getUserById(id);
-		dao.putUser(user);
 		getAllUsers(request, response);
 	}
 
+	private void loadUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("id"));
+		User user = dao.getUserById(id);
+
+		request.setAttribute("user", user);
+		RequestDispatcher rd = request.getRequestDispatcher("edit-collab.jsp");
+		rd.forward(request, response);
+	}
+
+	private void putUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("id"));
+		User user = dao.getUserById(id);
+
+		dao.putUser(user);
+		getAllUsers(request, response);
+	}
 }
