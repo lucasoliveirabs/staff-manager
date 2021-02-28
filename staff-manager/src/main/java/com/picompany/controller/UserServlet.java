@@ -36,6 +36,9 @@ public class UserServlet extends HttpServlet {
 			case "load":
 				loadUser(request, response);
 				break;
+			case "delete":
+				deleteUser(request, response);
+				break;
 			default:
 				getAllUsers(request, response);
 			}
@@ -105,6 +108,13 @@ public class UserServlet extends HttpServlet {
 		User user = dao.getUserById(id);
 
 		dao.putUser(user);
+		getAllUsers(request, response);
+	}
+
+	private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("id"));
+		dao.deleteUser(id);
 		getAllUsers(request, response);
 	}
 }
