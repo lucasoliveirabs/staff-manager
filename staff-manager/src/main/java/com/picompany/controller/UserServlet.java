@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.picompany.dao.UserDaoLocal;
 import com.picompany.model.User;
@@ -81,15 +82,25 @@ public class UserServlet extends HttpServlet {
 	private void postUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		User user = new User();
+		User user = new User();		
 		user.setName(request.getParameter("name"));
 		user.setEmail(request.getParameter("email"));
 		user.setPassword(request.getParameter("password"));
 		user.setCategory(Boolean.valueOf(request.getParameter("category")));
 		// verifyParameters(HttpServletRequest request, User user);
-
+		
 		dao.postUser(user);
-		getAllUsers(request, response);
+		
+		HttpSession session = request.getSession(false);		
+		if (session.getAttribute("user") != null) {
+			//send message:
+			//The new collaborator is registered successfully
+			getAllUsers(request, response);
+		} else {
+			//send message:
+			//The account is successfully created 
+			response.sendRedirect("login.jsp");
+		}
 	}
 
 	private void loadUser(HttpServletRequest request, HttpServletResponse response)
@@ -106,7 +117,8 @@ public class UserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));
 		User user = dao.getUserById(id);
-
+		// verifyParameters(HttpServletRequest request, User user);
+		
 		dao.putUser(user);
 		getAllUsers(request, response);
 	}
@@ -114,7 +126,9 @@ public class UserServlet extends HttpServlet {
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));
+		
 		dao.deleteUser(id);
-		getAllUsers(request, response);
+		
+			getAllUsers(request, response);	
 	}
 }
