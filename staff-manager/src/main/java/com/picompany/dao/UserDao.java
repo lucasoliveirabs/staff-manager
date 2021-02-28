@@ -43,4 +43,9 @@ public class UserDao implements UserDaoLocal {
 	public List<User> getAllUsers() {
 		return manager.createQuery("FROM User").getResultList();
 	}
+
+	@Override
+	public void putUser(User user) {
+		manager.merge(user);
+	}
 }

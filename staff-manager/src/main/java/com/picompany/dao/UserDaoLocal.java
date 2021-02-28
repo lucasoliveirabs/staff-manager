@@ -14,4 +14,6 @@ public interface UserDaoLocal {
 	void postUser(User user);
 	
 	List<User> getAllUsers();
+	
+	void putUser(User user);
 }
