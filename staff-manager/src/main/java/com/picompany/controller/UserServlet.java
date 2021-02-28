@@ -49,6 +49,8 @@ public class UserServlet extends HttpServlet {
 		case "post":
 			postUser(request, response);
 			break;
+		case "put":
+			putUser(request, response);
 		default:
 			getAllUsers(request, response);
 		}
@@ -87,4 +89,12 @@ public class UserServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		rd.forward(request, response);
 	}
+	
+	private void putUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("id"));
+		User user = dao.getUserById(id);
+		dao.putUser(user);
+		getAllUsers(request, response);
+	}
+
 }
