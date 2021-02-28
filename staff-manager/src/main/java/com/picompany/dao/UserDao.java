@@ -1,5 +1,7 @@
 package com.picompany.dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -34,5 +36,11 @@ public class UserDao implements UserDaoLocal {
 	@Override
 	public void postUser(User user) {
 		manager.persist(user);		
+	}
+
+	@Override
+	@SuppressWarnings("unchecked") // getResultList() returns a raw List object.
+	public List<User> getAllUsers() {
+		return manager.createQuery("FROM User").getResultList();
 	}
 }
