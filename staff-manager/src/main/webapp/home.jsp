@@ -25,21 +25,28 @@
 			</tr>
 			<c:forEach var="user" items="${userList}">
 				<c:url var="userUpdate" value="users">
-					<c:param name="command" value="getbyemail" />
-					<c:param name="userEmail" value="${user.email}" />
+					<c:param name="command" value="load" />
+					<c:param name="id" value="${user.id}" />
 				</c:url>
 
 				<c:url var="userDelete" value="users">
 					<c:param name="command" value="delete" />
-					<c:param name="userEmail" value="${user.email}" />
+					<c:param name="id" value="${user.id}" />
 				</c:url>
+
+				<c:url var="listPhones" value="phones">
+					<c:param name="command" value="get" />
+					<c:param name="userId" value="${user.id}" />
+				</c:url>
+
 				<tr>
 					<td scope="row"><c:out value="${user.name}" /></td>
 					<td><c:out value="${user.email}" /></td>
 					<td><a href="${userUpdate}" id="update-button">Update</a> <a
-						href="${userDelete}" id="delete-button">Delete</a></td>
-					<!-- ${listPhones} -->
+						href="${userDelete}" id="delete-button">Delete</a><a
+						href="${listPhones}" id="phones-button">Phones</a></td>
 				</tr>
+
 			</c:forEach>
 		</table>
 	</div>
