@@ -20,4 +20,6 @@ public interface UserDaoLocal {
 	User getUserById(Long id);
 	
 	void deleteUser(Long id);
+	
+	User getUserByEmail(String email);
 }
