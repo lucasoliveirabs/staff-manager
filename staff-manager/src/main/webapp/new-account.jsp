@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>New collaborator</title>
+<title>New account</title>
 </head>
 <body>
 	<div id="form">
