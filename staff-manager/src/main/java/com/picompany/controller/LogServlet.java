@@ -51,9 +51,9 @@ public class LogServlet extends HttpServlet {
 	private void authorizeLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		User user = dao.authorizeLogin(email, password);
+		User user = dao.getUserByEmail(email);
 
-		if (user == null) {
+		if (user == null || user.getCategory() == false || user.getEmail() != email || user.getPassword() != password) {
 			response.sendRedirect("login.jsp");
 			// send message: 'You must login as administrator.'
 		} else {
