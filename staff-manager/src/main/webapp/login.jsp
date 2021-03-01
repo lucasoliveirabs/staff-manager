@@ -1,18 +1,5 @@
-<html>
-<body>
-	<form id="form" action="log" method="POST">
-		<input type="hidden" name="command" value="login" /> E-mail address:<input
-			type="text" name="email" required /> <br /> <br /> Password: <input
-			type="password" name="password" required /> <br /> <br />
-
-
-	</form>
-</body>
-</html>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
