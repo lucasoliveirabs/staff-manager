@@ -45,9 +45,8 @@ public class UserDao implements UserDaoLocal {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked") // getResultList() returns a raw List object.
 	public List<User> getAllUsers() {
-		return manager.createQuery("FROM User").getResultList();
+		return manager.createQuery("FROM User", User.class).getResultList();
 	}
 
 	@Override
