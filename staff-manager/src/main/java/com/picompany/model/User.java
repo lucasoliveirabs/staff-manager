@@ -1,7 +1,6 @@
 package com.picompany.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -58,6 +57,6 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private Boolean category;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Phone> phones = new ArrayList<Phone>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Phone> phones;
 }
