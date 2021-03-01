@@ -1,4 +1,4 @@
-package com.picompany.model;
+	package com.picompany.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -24,7 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "phone", uniqueConstraints = { @UniqueConstraint(columnNames = "number") })
+@Table(name = "phone")
 public class Phone {
 
 	@Id
@@ -38,7 +37,7 @@ public class Phone {
 	@Size(min = 8, max = 9, message = "The phone number length must be between 8 and 9 numbers")
 	@NotEmpty(message = "The phone number cannot be empty or null")
 	@Pattern(regexp = "^[0-9]+$", message = "The phone number has invalid characters")
-	@Column(nullable = false, unique = true, length = 9)
+	@Column(nullable = false, length = 9)
 	private String number;
 	
 	@NotEmpty(message = "The phone type cannot be empty or null")
