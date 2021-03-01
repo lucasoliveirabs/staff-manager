@@ -7,9 +7,29 @@
 <title>Edit collaborator</title>
 </head>
 <body>
+	<div class="header">
+		<nav>
+			<ul>
+				<li><a href="users">Home</a></li>
+			</ul>
+		</nav>
+		<div class="logout">
+			<form name="userLogout" id="userLogout" action="log" method="POST">
+				<input type="submit" value="Logout" id="logout-button" /> <input
+					type="hidden" name="command" value="logout" />
+			</form>
+		</div>
+	</div>
+
+	<div id="h3-list">
+		<ul>
+			<li><h3>Edit collaborator</h3></li>
+		</ul>
+	</div>
+
 	<div id="form">
 		<form action="users" method="POST">
-			<input type="hidden" name="command" value="update" />
+			<input type="hidden" name="command" value="put" />
 
 			<table>
 				<tbody>
@@ -22,7 +42,7 @@
 					<tr>
 						<td><label>E-mail:</label></td>
 						<td><label style="text-align: left;">${user.email}</label> <input
-							type="hidden" name="email" value="${user.email}"></td>
+							type="hidden" name="email" value="${user.email}" required></td>
 					</tr>
 
 					<tr>
@@ -49,6 +69,27 @@
 									value="false" checked />Regular</label>
 							</div>
 						</td>
+					</tr>
+
+					<tr>
+						<td><label>Phone 1:</label></td>
+						<td><input type="text" name="ddd1" /></td>
+						<td><input type="text" name="number1" /></td>
+						<td><input type="text" name="type1" /></td>
+					</tr>
+
+					<tr>
+						<td><label>Phone 2:</label></td>
+						<td><input type="text" name="ddd2" /></td>
+						<td><input type="text" name="number2" /></td>
+						<td><input type="text" name="type2" /></td>
+					</tr>
+
+					<tr>
+						<td><label>Phone 3:</label></td>
+						<td><input type="text" name="ddd3" /></td>
+						<td><input type="text" name="number3" /></td>
+						<td><input type="text" name="type3" /></td>
 					</tr>
 
 					<tr class="blank-row">
