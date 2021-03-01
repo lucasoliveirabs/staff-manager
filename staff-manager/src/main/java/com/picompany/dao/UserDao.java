@@ -18,27 +18,6 @@ public class UserDao implements UserDaoLocal {
 	@PersistenceContext(unitName = "picompanyMySqlPU")
 	private EntityManager manager;
 
-	@SuppressWarnings("finally")
-	@Override
-	public User authorizeLogin(String email, String password) {
-		User user = null;
-		Query query = manager.createQuery("SELECT u FROM User u WHERE u.email = :userEmail AND "
-				+ "u.password = :userPassword AND u.category = :userCategory ");
-		query.setParameter("userEmail", email);
-		query.setParameter("userPassword", password);
-		query.setParameter("userCategory", true); // administrators only
-
-		try {
-			user = (User) query.getSingleResult();
-		} catch (NoResultException e) {
-			user = null;
-		} catch (NonUniqueResultException exc) {
-			throw new EJBException(exc.getMessage(), exc); // hibernate validator issue
-		} finally {
-			return user;
-		}
-	}
-
 	@Override
 	public void postUser(User user) {
 		manager.persist(user);
@@ -46,7 +25,8 @@ public class UserDao implements UserDaoLocal {
 
 	@Override
 	public List<User> getAllUsers() {
-		return manager.createQuery("FROM User", User.class).getResultList();
+		return manager.createQuery("SELECT u FROM User u", User.class)
+				.getResultList();
 	}
 
 	@Override
@@ -64,11 +44,11 @@ public class UserDao implements UserDaoLocal {
 		manager.remove(getUserById(id));
 	}
 
-	@SuppressWarnings("finally")
 	@Override
 	public User getUserByEmail(String email) {
-		User user = null;
-		Query query = manager.createQuery("SELECT u FROM User u WHERE u.email = :userEmail");
+		User user;
+		Query query = manager
+				.createQuery("SELECT u FROM User u WHERE u.email = :userEmail" );
 		query.setParameter("userEmail", email);
 
 		try {
@@ -76,9 +56,8 @@ public class UserDao implements UserDaoLocal {
 		} catch (NoResultException e) {
 			user = null;
 		} catch (NonUniqueResultException exc) {
-			throw new EJBException(exc.getMessage(), exc);	// hibernate validator issue
-		} finally {
-			return user;
-		}
+			throw new EJBException(exc.getMessage(), exc); // hibernate validator issue
+		} 
+		return user;
 	}
 }

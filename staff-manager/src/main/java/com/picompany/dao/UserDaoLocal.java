@@ -9,8 +9,6 @@ import com.picompany.model.User;
 @Local
 public interface UserDaoLocal {
 	
-	User authorizeLogin(String email, String password);
-	
 	void postUser(User user);
 	
 	List<User> getAllUsers();
