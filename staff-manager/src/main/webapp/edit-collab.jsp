@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -39,14 +38,14 @@
 					<tr>
 						<td>
 							<div class="category">
-								<label><input type="radio" name="categoryu" id="true"
-									value="true" />Test</label>
+								<label><input type="radio" name="category" id="true"
+									value="true" />Admin</label>
 							</div>
 						</td>
 
 						<td>
 							<div class="category">
-								<label><input type="radio" name="categoryu" id="false"
+								<label><input type="radio" name="category" id="false"
 									value="false" checked />Regular</label>
 							</div>
 						</td>

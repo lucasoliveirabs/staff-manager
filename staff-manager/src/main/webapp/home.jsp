@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -21,11 +21,13 @@
 			<tr class="thead-dark">
 				<th scope="col">Name</th>
 				<th scope="col">E-mail</th>
+				<th scope="col">Category</th>
+				<th scope="col">Phone</th>
 				<th scope="col">Options</th>
 			</tr>
 			<c:forEach var="user" items="${userList}">
 				<c:url var="userUpdate" value="users">
-					<c:param name="command" value="load" />
+					<c:param name="command" value="loadforupdate" />
 					<c:param name="id" value="${user.id}" />
 				</c:url>
 
@@ -34,17 +36,26 @@
 					<c:param name="id" value="${user.id}" />
 				</c:url>
 
-				<c:url var="listPhones" value="phones">
-					<c:param name="command" value="get" />
+				<c:url var="viewUser" value="users">
+					<c:param name="command" value="loadforview" />
 					<c:param name="userId" value="${user.id}" />
 				</c:url>
 
 				<tr>
-					<td scope="row"><c:out value="${user.name}" /></td>
-					<td><c:out value="${user.email}" /></td>
+					<td scope="row">${user.name}</td>
+					<td>${user.email}</td>
+					<td><c:if test="${not user.category}">Regular</c:if> <c:if
+							test="${user.category}">Admin</c:if></td>
+					<td><c:out value="${user.phones[0].ddd}" /> <c:out
+							value="${user.phones[0].number}" /> <c:out
+							value="${user.phones[0].type}" /> 
+							<c:if
+							test="${fn:length(user.phones) > 1}">
+							<a
+						href="${viewUser}" id="view-button">more...</a>
+						</c:if></td>
 					<td><a href="${userUpdate}" id="update-button">Update</a> <a
-						href="${userDelete}" id="delete-button">Delete</a><a
-						href="${listPhones}" id="phones-button">Phones</a></td>
+						href="${userDelete}" id="delete-button">Delete</a></td>
 				</tr>
 
 			</c:forEach>
