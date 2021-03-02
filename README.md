@@ -1,10 +1,10 @@
 # staff-manager
 
 ## Developed using: 
--JDK 8
--Eclipse IDE for Enterprise Java Developers 2020-12
--WildFly 22.0.0.Final
--MySQL Database 
+- JDK 8
+- Eclipse IDE for Enterprise Java Developers 2020-12
+- WildFly 22.0.0.Final
+- MySQL Database 
 
 
 ## Setup the Application:
