@@ -63,8 +63,10 @@
 
 							<td><c:out value="${user.email}" /></td>
 
-							<td><c:if test="${not user.category}">Regular</c:if> <c:if
-									test="${user.category}">Admin</c:if></td>
+							<td><c:choose>
+									<c:when test="${user.category}">Admin</c:when>
+									<c:otherwise>Regular</c:otherwise>
+								</c:choose></td>
 
 							<c:forEach var="phone" items="${user.phones}">
 								<c:if test="${not empty phone}">
