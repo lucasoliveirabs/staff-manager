@@ -24,7 +24,7 @@
 
 					<tr>
 						<td><label>Password:</label></td>
-						<td><input type="password" name="password" required /> 
+						<td><input type="password" name="password" required />
 					</tr>
 
 					<tr>
@@ -34,17 +34,38 @@
 					<tr>
 						<td>
 							<div class="category">
-								<label><input type="radio" name="categoryu" id="true"
+								<label><input type="radio" name="category" id="true"
 									value="true" />Test</label>
 							</div>
 						</td>
 
 						<td>
 							<div class="category">
-								<label><input type="radio" name="categoryu" id="false"
-									value="false" checked/>Regular</label>
+								<label><input type="radio" name="category" id="false"
+									value="false" checked />Regular</label>
 							</div>
 						</td>
+					</tr>
+
+					<tr>
+						<td><label>Phone 1:</label></td>
+						<td><input type="text" name="ddd1" /></td>
+						<td><input type="text" name="number1" /></td>
+						<td><input type="text" name="type1" /></td>
+					</tr>
+
+					<tr>
+						<td><label>Phone 2:</label></td>
+						<td><input type="text" name="ddd2" /></td>
+						<td><input type="text" name="number2" /></td>
+						<td><input type="text" name="type2" /></td>
+					</tr>
+
+					<tr>
+						<td><label>Phone 3:</label></td>
+						<td><input type="text" name="ddd3" /></td>
+						<td><input type="text" name="number3" /></td>
+						<td><input type="text" name="type3" /></td>
 					</tr>
 
 					<tr class="blank-row">
@@ -53,8 +74,7 @@
 
 					<tr>
 						<td><label></label></td>
-						<td><input type="submit" value="Create"
-							class="submit-button" /></td>
+						<td><input type="submit" value="Create" class="submit-button" /></td>
 					</tr>
 
 				</tbody>
