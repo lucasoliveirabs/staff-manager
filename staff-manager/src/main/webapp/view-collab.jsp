@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Edit collaborator</title>
+<title>View collaborator</title>
 </head>
 <body>
 	<div class="header">
