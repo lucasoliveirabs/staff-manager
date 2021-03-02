@@ -59,14 +59,14 @@
 						<td>
 							<div class="category">
 								<label><input type="radio" name="category" id="true"
-									value="true" />Admin</label>
+									value="true" ${user.category == 'true' ? 'checked' : ''}/>Admin</label>
 							</div>
 						</td>
 
 						<td>
 							<div class="category">
 								<label><input type="radio" name="category" id="false"
-									value="false" checked />Regular</label>
+									value="false" ${user.category == 'false' ? 'checked' : ''} />Regular</label>
 							</div>
 						</td>
 					</tr>
