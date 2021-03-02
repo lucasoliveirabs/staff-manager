@@ -45,7 +45,7 @@ public class User implements Serializable {
 	@Size(min = 6, max = 60, message = "The e-mail address length must be between 5 and 50 characters")
 	@NotEmpty(message = "The e-mail address cannot be empty or null")
 	@Email(message = "The e-mail address must be valid")
-	@Column(length = 50, nullable = false)
+	@Column(length = 60, nullable = false)
 	private String email;
 
 	@Size(min = 8, max = 30, message = "The password length must be between 8 and 30 characters")
