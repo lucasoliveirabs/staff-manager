@@ -5,6 +5,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Edit collaborator</title>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"
+	type="text/javascript"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"
+	type="text/javascript"></script>
+<script src="jquery/collab.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="header">
@@ -59,7 +64,7 @@
 						<td>
 							<div class="category">
 								<label><input type="radio" name="category" id="true"
-									value="true" ${user.category == 'true' ? 'checked' : ''}/>Admin</label>
+									value="true" ${user.category == 'true' ? 'checked' : ''} />Admin</label>
 							</div>
 						</td>
 

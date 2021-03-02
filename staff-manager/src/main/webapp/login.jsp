@@ -4,6 +4,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Login</title>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"
+	type="text/javascript"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"
+	type="text/javascript"></script>
+<script src="jquery/collab.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="container">
@@ -42,7 +47,7 @@
 						</tr>
 
 						<tr>
-							<td colspan="2"><a href="new-account.jsp">Create an account</a></td>
+							<td colspan="2"><a href="new-account.jsp">Register</a></td>
 						</tr>
 
 					</tbody>
