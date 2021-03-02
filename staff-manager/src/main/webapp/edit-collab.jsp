@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Edit collaborator</title>
+<link rel="stylesheet" type="text/css" href="css/add.css">
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"
 	type="text/javascript"></script>
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"
